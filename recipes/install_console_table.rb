@@ -19,4 +19,5 @@
 
 php_pear "Console_Table" do
   action :install
+  not_if "pear list | grep -q Console_Table"
 end

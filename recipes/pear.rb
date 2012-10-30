@@ -36,6 +36,7 @@ end
 # Initialize drush PEAR channel
 dc = php_pear_channel "pear.drush.org" do
   action :discover
+  not_if "which drush | grep -q drush"
 end
 
 # Install drush
@@ -43,4 +44,5 @@ php_pear "drush" do
   version node['drush']['version']
   channel dc.channel_name
   action :install
+  not_if "which drush | grep -q drush"
 end
